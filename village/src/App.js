@@ -43,11 +43,22 @@ class App extends Component {
             .catch(err => console.error(err, err.response.data))
     }
 
+    
     updateSmurf = smurfId => {
       this.props.history.push({
             pathname: `/smurf-form/${smurfId}`,
             checker: smurfId
         })
+    }
+
+    putSmurf = smurf => {
+      axios
+          .put(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
+          .then(res => {
+            this.setState({ smurfs: res.data });
+            this.props.history.push("/");
+        })
+        .catch(err => console.error(err, err.response.data))
     }
 
     render() {
@@ -69,6 +80,7 @@ class App extends Component {
                     path="/smurf-form"
                     render={() => <SmurfForm 
                                       addSmurf={this.addSmurf} 
+                                      putSmurf={this.putSmurf}
                                       path={this.props.path}
                                   />
                     }

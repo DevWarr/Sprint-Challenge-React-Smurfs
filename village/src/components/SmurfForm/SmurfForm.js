@@ -20,7 +20,7 @@ class SmurfForm extends Component {
     componentWillMount() {
         // change this line to grab the id passed on the URL
         console.log(this.props)
-        if (this.props.history.location.checker) {
+        if (this.props.history.location.checker >= 0) {
             const id = this.props.history.location.checker
             this.fetchSmurf(id)
         } else {
@@ -32,7 +32,7 @@ class SmurfForm extends Component {
         axios
             .get(`http://localhost:3333/smurfs`)
             .then(response => {
-                const editData = response.data.filter(smurf => (smurf.id = id))
+                const editData = response.data.filter(smurf => (smurf.id === id))
 
                 if (!editData[0]) {
                     console.log("No smurf found with this data!")
@@ -43,7 +43,7 @@ class SmurfForm extends Component {
                     id: editData[0].id,
                     name: editData[0].name,
                     age: editData[0].age,
-                    height: editData[0].height,
+                    height: editData[0].height.substring(0, editData[0].height.length-2),
                     msgTitle: "Edit Smurf info:",
                     msgButton: "Confirm Changes",
                     func: this.updateSmurf
@@ -81,7 +81,7 @@ class SmurfForm extends Component {
             height: `${this.state.height}cm`
         }
 
-        this.props.updateSmurf(smurf)
+        this.props.putSmurf(smurf)
 
         this.setState({
             name: "",
