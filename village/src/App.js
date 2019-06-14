@@ -43,6 +43,13 @@ class App extends Component {
             .catch(err => console.error(err, err.response.data))
     }
 
+    updateSmurf = smurfId => {
+      this.props.history.push({
+            pathname: `/smurf-form/${smurfId}`,
+            checker: smurfId
+        })
+    }
+
     render() {
         return (
             <div className="App">

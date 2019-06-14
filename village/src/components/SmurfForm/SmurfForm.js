@@ -1,14 +1,57 @@
 import React, { Component } from "react"
-import { FormContainer, Form, Input, Button } from "./SmurfFormSC";
+import axios from "axios"
+import { withRouter } from "react-router-dom"
+import { FormContainer, Form, Input, Button } from "./SmurfFormSC"
 
 class SmurfForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: "",
             name: "",
             age: "",
-            height: ""
+            height: "",
+            msgTitle: "Add a new Smurf!",
+            msgButton: "Add to the Village",
+            func: this.addSmurf
         }
+    }
+
+    componentWillMount() {
+        // change this line to grab the id passed on the URL
+        console.log(this.props)
+        if (this.props.history.location.checker) {
+            const id = this.props.history.location.checker
+            this.fetchSmurf(id)
+        } else {
+            return
+        }
+    }
+
+    fetchSmurf = id => {
+        axios
+            .get(`http://localhost:3333/smurfs`)
+            .then(response => {
+                const editData = response.data.filter(smurf => (smurf.id = id))
+
+                if (!editData[0]) {
+                    console.log("No smurf found with this data!")
+                    return
+                }
+                console.log(editData[0])
+                this.setState({
+                    id: editData[0].id,
+                    name: editData[0].name,
+                    age: editData[0].age,
+                    height: editData[0].height,
+                    msgTitle: "Edit Smurf info:",
+                    msgButton: "Confirm Changes",
+                    func: this.updateSmurf
+                })
+            })
+            .catch(error => {
+                console.error(error)
+            })
     }
 
     addSmurf = event => {
@@ -29,6 +72,24 @@ class SmurfForm extends Component {
         })
     }
 
+    updateSmurf = e => {
+        e.preventDefault()
+        const smurf = {
+            id: this.state.id,
+            name: this.state.name,
+            age: Number(this.state.age),
+            height: `${this.state.height}cm`
+        }
+
+        this.props.updateSmurf(smurf)
+
+        this.setState({
+            name: "",
+            age: "",
+            height: ""
+        })
+    }
+
     handleInputChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
@@ -36,8 +97,8 @@ class SmurfForm extends Component {
     render() {
         return (
             <FormContainer>
-                <Form onSubmit={this.addSmurf}>
-                    <h2>{this.props.msg}</h2>
+                <Form onSubmit={this.state.func}>
+                    <h2>{this.state.msgTitle}</h2>
                     <Input
                         type="text"
                         onChange={this.handleInputChange}
@@ -62,15 +123,11 @@ class SmurfForm extends Component {
                         name="height"
                         required
                     />
-                    <Button type="submit">Add to the village</Button>
+                    <Button type="submit">{this.state.msgButton}</Button>
                 </Form>
             </FormContainer>
         )
     }
 }
 
-SmurfForm.defaultProps = {
-    msg: "Add a new Smurf!"
-}
-
-export default SmurfForm
+export default withRouter(SmurfForm)
