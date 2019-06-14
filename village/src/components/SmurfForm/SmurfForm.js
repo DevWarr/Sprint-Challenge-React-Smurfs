@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { FormContainer, Form, Input, Button } from "./SmurfFormSC";
 
 class SmurfForm extends Component {
     constructor(props) {
@@ -15,8 +16,8 @@ class SmurfForm extends Component {
         // add code to create the smurf using the api
         const newSmurf = {
             name: this.state.name,
-            age: this.state.age,
-            height: this.state.height
+            age: Number(this.state.age),
+            height: `${this.state.height}cm`
         }
 
         this.props.addSmurf(newSmurf)
@@ -34,9 +35,10 @@ class SmurfForm extends Component {
 
     render() {
         return (
-            <div className="SmurfForm">
-                <form onSubmit={this.addSmurf}>
-                    <input
+            <FormContainer>
+                <Form onSubmit={this.addSmurf}>
+                    <h2>{this.props.msg}</h2>
+                    <Input
                         type="text"
                         onChange={this.handleInputChange}
                         placeholder="name"
@@ -44,7 +46,7 @@ class SmurfForm extends Component {
                         name="name"
                         required
                     />
-                    <input
+                    <Input
                         type="number"
                         onChange={this.handleInputChange}
                         placeholder="age"
@@ -52,7 +54,7 @@ class SmurfForm extends Component {
                         name="age"
                         required
                     />
-                    <input
+                    <Input
                         type="number"
                         onChange={this.handleInputChange}
                         placeholder="height"
@@ -60,11 +62,15 @@ class SmurfForm extends Component {
                         name="height"
                         required
                     />
-                    <button type="submit">Add to the village</button>
-                </form>
-            </div>
+                    <Button type="submit">Add to the village</Button>
+                </Form>
+            </FormContainer>
         )
     }
+}
+
+SmurfForm.defaultProps = {
+    msg: "Add a new Smurf!"
 }
 
 export default SmurfForm
