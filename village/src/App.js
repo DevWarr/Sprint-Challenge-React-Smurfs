@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import axios from "axios"
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom"
 
 import "./App.css"
 import SmurfForm from "./components/SmurfForm/SmurfForm"
@@ -26,38 +26,49 @@ class App extends Component {
     }
 
     addSmurf = newSmurf => {
-      axios
-          .post("http://localhost:3333/smurfs", newSmurf)
-          .then(res => this.setState({ smurfs: res.data }))
-          .catch(err => console.error(err, err.response.data));
+        axios
+            .post("http://localhost:3333/smurfs", newSmurf)
+            .then(res => {
+                this.setState({ smurfs: res.data });
+                this.props.history.push("/");
+            })
+            .catch(err => console.error(err, err.response.data))
     }
 
     deleteSmurf = smurfId => {
-      console.log(smurfId);
-      axios 
-          .delete(`http://localhost:3333/smurfs/${smurfId}`)
-          .then(res => this.setState({ smurfs: res.data }))
-          .catch(err => console.error(err, err.response.data));
+        console.log(smurfId)
+        axios
+            .delete(`http://localhost:3333/smurfs/${smurfId}`)
+            .then(res => this.setState({ smurfs: res.data }))
+            .catch(err => console.error(err, err.response.data))
     }
 
     render() {
         return (
             <div className="App">
                 <NavBar />
-                <Route 
-                    exact path="/" 
-                    render={() => <Smurfs 
-                                      smurfs={this.state.smurfs} 
-                                      update={this.updateSmurf}
-                                      delete={this.deleteSmurf}
-                                  />
-                    } 
+                <Route
+                    exact
+                    path="/"
+                    render={() => (
+                        <Smurfs
+                            smurfs={this.state.smurfs}
+                            update={this.updateSmurf}
+                            delete={this.deleteSmurf}
+                        />
+                    )}
                 />
-                <Route path="/smurf-form" render={() => <SmurfForm addSmurf={this.addSmurf} />} />
+                <Route
+                    path="/smurf-form"
+                    render={() => <SmurfForm 
+                                      addSmurf={this.addSmurf} 
+                                      path={this.props.path}
+                                  />
+                    }
+                />
             </div>
         )
     }
 }
 
-export default App
-
+export default withRouter(App)
