@@ -1,13 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { Nav, Title, Link } from "./NavBarSC";
 
 const NavBar = props => {
     return (
         <Nav>
-            <h3>Smurf Village</h3>
-            <NavLink to="/" activeClassName="active">Smurfs</NavLink>
-            <NavLink to="/smurf-form" activeClassName="active">New Smurf</NavLink>
+            <Title>Smurf Village</Title>
+            <Link exact to="/" activeClassName="active">Smurfs</Link>
+            <Link to="/smurf-form" activeClassName="active">New Smurf</Link>
 
         </Nav>
     );
