@@ -1,12 +1,13 @@
 import React from "react"
+import { SmurfCard, Name, Age, Height } from "./SmurfSC"
 
 const Smurf = props => {
     return (
-        <div className="Smurf">
-            <h3>{props.name}</h3>
-            <strong>{props.height} tall</strong>
-            <p>{props.age} smurf years old</p>
-        </div>
+        <SmurfCard>
+            <Name>{props.name}</Name>
+            <Height>{props.height} tall</Height>
+            <Age>{props.age} smurf years old</Age>
+        </SmurfCard>
     )
 }
 
