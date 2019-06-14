@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import axios from "axios";
+import axios from "axios"
 
 import "./App.css"
 import SmurfForm from "./components/SmurfForm/SmurfForm"
@@ -17,9 +17,17 @@ class App extends Component {
     // You'll need to make sure you have the right properties on state and pass them down to props.
 
     componentDidMount() {
-        axios.get("http://localhost:3333/smurfs")
+        axios
+            .get("http://localhost:3333/smurfs")
             .then(res => this.setState({ smurfs: res.data }))
-            .catch(err => console.error("Unable to request from API:", err));
+            .catch(err => console.error("Unable to request from API:", err))
+    }
+
+    addSmurf = newSmurf => {
+      axios
+          .post("http://localhost:3333/smurfs", newSmurf)
+          .then(res => this.setState({ smurfs: res.data }))
+          .catch(err => console.error(err, err.response.data));
     }
 
     render() {
