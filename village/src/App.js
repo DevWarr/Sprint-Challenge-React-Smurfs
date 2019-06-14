@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import SmurfForm from './components/SmurfForm';
-import Smurfs from './components/Smurfs';
+import SmurfForm from './components/SmurfForm/SmurfForm';
+import Smurfs from './components/Smurfs/Smurfs';
 
 class App extends Component {
   constructor(props) {

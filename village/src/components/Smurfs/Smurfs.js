@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Smurf from './Smurf';
+import Smurf from '../Smurf/Smurf';
 
 class Smurfs extends Component {
   render() {
