@@ -43,7 +43,11 @@ class App extends Component {
             .catch(err => console.error(err, err.response.data))
     }
 
-    
+    /*Redirects to SmurfForm.js with an extra property called "checker".
+      Checker simply holds onto the id value of the smurf.
+      Using props.history did not assign a value to props.match.params,
+       so I instead add an extra property "checker" to store the Smurf's id.
+    */
     updateSmurf = smurfId => {
       this.props.history.push({
             pathname: `/smurf-form/${smurfId}`,
