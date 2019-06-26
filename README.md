@@ -14,7 +14,7 @@ You have three hours to complete this challenge. Plan your time accordingly.
 
 ## Commits
 
-Commit your code regularly and meaningfully. This helps both you (in case you ever need to return to old code for any number of reasons and your project manager).
+Commit your code regularly and meaningfully. This helps both you (in case you ever need to return to old code for any number of reasons) and your project manager.
 
 ## Description
 
@@ -28,34 +28,45 @@ In this challenge, you will create a Single Page Application complete with Clien
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
-- [ ] Explain the differences between `client-side routing` and `server-side routing`.
-- [ ] Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
-- [ ] Mention three tools we can use to make AJAX requests.
+- [x] Explain the differences between `client-side routing` and `server-side routing`.
+  - With server-side routing, the user's browser calls a server that contains all information about a webpage. Each new load on the webpage calls the server for all of the information needed to display the page. This can be slow because the browser re-asks the server for info if may already have.
+  - With client-side routing, the user's browser calls a server for the initial load of teh webpage. After that, any links within the page do not refresh the page, but instead re-render different components on the page. This can cause a slower intial load time, but routing between pages after everything is loaded is usually faster. Animations are also easier toimplement, because the code is already loaded in the user's browser
+
+- [x] Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+  - Post: Create
+  - Get: Read
+  - Put: Update
+  - Delete: Delete
+
+- [x] Mention three tools we can use to make AJAX requests.
+  - The axios library. With axios.get/post/put/delete/etc, you can easily make requests from a server with promises.
+  - Promises allow us to create functions that will return a "Promise" object. This object has a resolve and reject function that will then run when a server call is successful or unseccessful, respectively.
+  - Fetch is Javascript's built in AJAX request ability. In time, this may become more common than the Axios library.
 
 
 ## Project Set Up
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add PM as collaborator on Github.
-- [ ] Clone your OWN version of Repo (Not Lambda's by mistake!).
-- [ ] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
-- [ ] Implement the project on this Branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
-- [ ] **RUN** `yarn install or npm install` at the root to retrieve all the dependencies for the node server. You will not need to create any react apps here nor will you need to install any other dependencies. You should have all you need in this repo.
-- [ ] **LOOK** at all the files you've been given for this project. One important file to note is `server.js`. This file contains an **API** that you are going to be interfacing with. Below is documentation on how to interact with the **API**.
-- [ ] **RUN** `yarn start or npm start` to get your API up and running on `http://localhost:3333`. This is the **URL** you're going to need to use within your React app in order to make AJAX requests for data.
-- [ ] After your API is up and running, you can open chrome and type in `http://localhost:3333/smurfs`. You should see an Array `[]` with a smurf returned to you. This is an array that your **API** will be using to store our Smurf Data.
-- [ ] **LOOK** at your `village` directory and notice it's just a plain ol' React App that we've built using `create-react-app`.
-- [ ] **cd** into `village` and run `yarn install or npm install` to retrieve the client side dependencies.
-- [ ] **RUN** `yarn start or npm start` to fire up your React application.
+- [x] Create a forked copy of this project.
+- [x] Add PM as collaborator on Github.
+- [x] Clone your OWN version of Repo (Not Lambda's by mistake!).
+- [x] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
+- [x] Implement the project on this Branch, committing changes regularly.
+- [x] Push commits: git push origin `<firstName-lastName>`.
+- [x] **RUN** `yarn install or npm install` at the root to retrieve all the dependencies for the node server. You will not need to create any react apps here nor will you need to install any other dependencies. You should have all you need in this repo.
+- [x] **LOOK** at all the files you've been given for this project. One important file to note is `server.js`. This file contains an **API** that you are going to be interfacing with. Below is documentation on how to interact with the **API**.
+- [x] **RUN** `yarn start or npm start` to get your API up and running on `http://localhost:3333`. This is the **URL** you're going to need to use within your React app in order to make AJAX requests for data.
+- [x] After your API is up and running, you can open chrome and type in `http://localhost:3333/smurfs`. You should see an Array `[]` with a smurf returned to you. This is an array that your **API** will be using to store our Smurf Data.
+- [x] **LOOK** at your `village` directory and notice it's just a plain ol' React App that we've built using `create-react-app`.
+- [x] **cd** into `village` and run `yarn install or npm install` to retrieve the client side dependencies.
+- [x] **RUN** `yarn start or npm start` to fire up your React application.
 
 Follow these steps for completing your project:
 
 - [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into master (student's  Repo).
 - [ ] Add your Project Manager as a Reviewer on the Pull-request
-- [ ] PM then will count the HW as done by  merging the branch back into master.
+- [ ] PM then will count the Sprint as done by merging the branch back into master.
 ## Minimum Viable Product
 
 The MVP of this project will be broken up between 2 stages. Follow each step and be sure to use your design/style skills to make this application look professional.
@@ -64,11 +75,11 @@ The MVP of this project will be broken up between 2 stages. Follow each step and
 
 Construct your Components to build a Single Page Application. Keep your components separate and design them as if they are pages before adding in your Router.
 
-- [ ] Construct an AXIOS request to retrieve an array all the Smurfs in the Smurf DB simply write a `GET` to the endpoint `/smurfs`.
-- [ ] Display those smurfs in a list on the screen.
-- [ ] Construct an AXIOS request to `POST` to add a Smurf to the Smurf DB you'll need all three fields.
-- [ ] Create a form that will allow users to add Smurfs to the Smurf DB.
-- [ ] If a Smurf is created correctly, you should see a response that is an array of Smurfs with unique id's assigned to each Smurf.
+- [x] Construct an AXIOS request to retrieve an array all the Smurfs in the Smurf DB simply write a `GET` to the endpoint `/smurfs`.
+- [x] Display those smurfs in a list on the screen.
+- [x] Construct an AXIOS request to `POST` to add a Smurf to the Smurf DB you'll need all three fields.
+- [x] Create a form that will allow users to add Smurfs to the Smurf DB.
+- [x] If a Smurf is created correctly, you should see a response that is an array of Smurfs with unique id's assigned to each Smurf.
 
 - Example:
 
@@ -84,11 +95,11 @@ Construct your Components to build a Single Page Application. Keep your componen
 
 Add a Router to this application by using React Router.
 
-- [ ] You'll start by wrapping your `root` component in the `Router` component.
-- [ ] Declare your routes with `Route`.
-- [ ] Then make it so you can navigate to your routes using `Link`.
-- [ ] Create two `routes` in your `App` component, one at `'/'` for your `Smurfs` component,and one at `/smurf-form` for your form.
-- [ ] Then in your `App` component, create a nav bar that will use `NavLink` to route to your different pages.
+- [x] You'll start by wrapping your `root` component in the `Router` component.
+- [x] Declare your routes with `Route`.
+- [x] Then make it so you can navigate to your routes using `Link`.
+- [x] Create two `routes` in your `App` component, one at `'/'` for your `Smurfs` component,and one at `/smurf-form` for your form.
+- [x] Then in your `App` component, create a nav bar that will use `NavLink` to route to your different pages.
 
 ## STRETCH PROBLEMS
 
@@ -100,10 +111,10 @@ Add a Router to this application by using React Router.
 
 **DELETE '/smurfs/123', where 123 is the Id of the smurf you want to remove**
 
-- [ ] For this endpoint to work, all you need is an id sent up as part of the request url.
+- [x] For this endpoint to work, all you need is an id sent up as part of the request url.
 
-- [ ] If your delete worked, you'll get a list of the smurfs back.
-- [ ] Example:
+- [x] If your delete worked, you'll get a list of the smurfs back.
+- [x] Example:
 
 ```js
 // output: `A list of all the smurfs in the Smurf DB will be returned`
@@ -125,8 +136,8 @@ Add a Router to this application by using React Router.
 
 **PUT '/smurfs/123', where 123 is the Id of the smurf you want to modify**
 
-- [ ] For this endpoint to work, you'll need an `id` added to the URL, and at least one field to update on the Smurf object. `name` `age` `height`.
-- [ ] Example:
+- [x] For this endpoint to work, you'll need an `id` added to the URL, and at least one field to update on the Smurf object. `name` `age` `height`.
+- [x] Example:
 
 ```js
 // input:
